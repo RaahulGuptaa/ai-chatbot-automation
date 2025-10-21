@@ -1,0 +1,21 @@
+{
+    "__comment": "This test data file contains all inputs, expected outputs, commands, and URLs for AI Chatbot UI automation tests. It includes greetings, math questions, date queries, special commands, emojis, links, and location questions.",
+
+    "chatInputMessage": "Hello, are you there?",
+    "testingUrl": "https://quillbot.com/ai-chat",
+    "invalidInput": "asdasd123",
+    "greetMessage": "Hello",
+    "greetWithEmoji": "Hello 😊",
+    "tajMahalQues": "Where is Taj Mahal ?",
+    "tajMahalLocation": "Agra",
+    "randomLink": "Check this link https://google.com",
+    "tajHotelQues": "In Which Courntry is Taj Hotel Mumbai ?",
+    "tajHotelLocation": "India",
+    "randomCalculation_1": "What is 2 + 2 equals ?",
+    "randomCalculationAnswer_1": "4",
+    "randomCalculation_2": "What is 15 * 2 equals ?",
+    "randomCalculationAnswer_2": "30",
+    "randomQuestion": "What is today's date?",
+    "command_HELP": "/help",
+    "command_SUMMARIZE": "/summarize"
+}
