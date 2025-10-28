@@ -21,4 +21,22 @@ test('Special Commands Test', async ({ chatPage }) => {
   log(`Bot reply received for /summarize: "${summarizeReply}"`);
   expect(summarizeReply).toBeTruthy();
   log(`/summarize command verification passed`);
+
+  const emojiMessage = testData.greetWithEmoji;
+  log(`Sending emoji message: "${emojiMessage}"`);
+  await chatPage.sendMessage(emojiMessage);
+
+  const emojiReply = await chatPage.getBotMessageText();
+  log(`Bot reply received for emoji: "${emojiReply}"`);
+  expect(emojiReply).toBeTruthy();
+  log(`Emoji handling verification passed`);
+
+  const linkMessage = testData.randomLink;
+  log(`Sending link message: "${linkMessage}"`);
+  await chatPage.sendMessage(linkMessage);
+
+  const linkReply = await chatPage.getBotMessageText();
+  log(`Bot reply received for link: "${linkReply}"`);
+  expect(linkReply).toBeTruthy();
+  log(`Link handling verification passed`);
 });

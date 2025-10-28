@@ -10,9 +10,9 @@ test('Verify Multi Conversation Test', async ({ chatPage }) => {
 
   log(`Sending question about Taj Mahal: "${testData.tajMahalQues}"`);
   await chatPage.sendMessage(testData.tajMahalQues);
-  const reply = await chatPage.getBotMessageText();
-  log(`Bot reply received: "${reply}"`);
-  expect(reply).toContain(testData.tajMahalLocation);
+  const reply1 = await chatPage.getBotMessageText();
+  log(`Bot reply received: "${reply1}"`);
+  expect(reply1).toContain(testData.tajMahalLocation);
   log(`Taj Mahal context verification passed`);
 
   log(`Sending question about Taj Hotel: "${testData.tajHotelQues}"`);
@@ -28,4 +28,25 @@ test('Verify Multi Conversation Test', async ({ chatPage }) => {
   log(`Bot reply received: "${reply3}"`);
   expect(reply3).toContain(testData.randomCalculationAnswer_1);
   log(`Calculation answer verification passed`);
+
+  log(`Sending empty message to chat input`);
+  await chatPage.sendMessage('');
+  const chatInputValue = await chatPage.page.locator(chatPage.chatInput).inputValue();
+  log(`Chat input value after sending empty message: "${chatInputValue}"`);
+  expect(chatInputValue).toBe('');
+  log(`Empty message verification passed`);
+
+  const messagesCount = await chatPage.page.locator(chatPage.message).count();
+  log(`Number of messages in chat after empty input: ${messagesCount}`);
+  expect(messagesCount).toBeGreaterThan(0);
+  log(`No message sent verification passed`);
+
+  const longMessage = 'A'.repeat(1200);
+  log(`Sending long message of length ${longMessage.length}`);
+  await chatPage.sendMessage(longMessage);
+
+  const reply4 = await chatPage.getBotMessageText();
+  log(`Bot reply received for long message: "${reply4}"`);
+  expect(reply4).toBeTruthy();
+  log(`Long message input validation passed`);
 });
